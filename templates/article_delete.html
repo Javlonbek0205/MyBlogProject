@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<form method="post"  class="px-4 py-3">{% csrf_token %}
+<h1>Postni o`chirish</h>
+    <p>"{{ article.title }}" nomli postni o`chirishni istaysizmi</p>
+    <button type="submit" class="btn btn-danger">Ha</button>
+  </form>
+
+  {% endblock content %}

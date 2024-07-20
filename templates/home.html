@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+
+{% block title %}Bosh sahifa{% endblock title %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+  <div class="card">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h1 class="playwrite-de-grund-uniquifier">Assalomu alaykum {{ user.first_name }}</h1>
+          <h4 class="cormorant-garamond-light">Mening ismim bilganingizdek Javlonbek. O`zim haqimda aytadigan bo`lsam yoshim 19da, dasturlash bo`yicha bilimlarim davomiy ravishda oshirib bormoqdaman. Bu ham bir kichik loyihalarimdan biri.Lekin keyinchalik yanada kengaytirish niyatim bor, bilganingizdek bu loyiha da postlar joylab boriladi va fikrlar almashamiz. Blog saytimga tashrifingizdan mamnunman!</h4>
+          <p class="barlow-condensed-thin">Postlarni ko`rish uchun pastdagi tugmani bosing</p>
+          <a href="{% url 'article_list' %}" class="btn btn-success">Postlarni ko`rish</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style>
+  .card {
+    background: url("{% static 'assets/img/backround.png' %}") no-repeat center center fixed; /* Oq va havorang rasmni yuklash */
+    background-size: cover;
+    color: #000000; /* Yozuv rangi (oq fon uchun qora rang tanlandi) */
+  }
+
+  .custom-card {
+    background-color: rgba(255, 255, 255, 0.8); /* Karta fonining shaffofligi (oq rangga mos) */
+    color: #000000; /* Karta yozuv rangi (oq fon uchun qora rang tanlandi) */
+  }
+
+  .custom-card .card-title {
+    color: #1e90ff; /* Karta sarlavhasi rangi (havorangga mos) */
+  }
+
+  .custom-card .card-subtitle {
+    color: #4682b4; /* Karta qo'shimcha sarlavhasi rangi (havorangning ochiq rangi) */
+  }
+
+  .custom-card .card-footer a {
+    color: #1e90ff; /* Havolalar rangi (havorang) */
+  }
+
+  .custom-card .card-footer a:hover {
+    color: #4682b4; /* Havola ustida bo'lgan rangi (havorangning ochiq rangi) */
+  }
+
+  .custom-card .card-header,
+  .custom-card .card-body {
+    background-color: rgba(255, 255, 255, 0.5); /* Izoh kartasining fonining shaffofligi (oq rangga mos) */
+  }
+
+  .custom-card .blockquote-footer {
+    color: #000000; /* Izoh muallifi rangi (oq fon uchun qora rang tanlandi) */
+  }
+
+  <!---->
+  .cormorant-garamond-light {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .barlow-condensed-thin {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .playwrite-de-grund-uniquifier {
+    font-family: "Playwrite DE Grund", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Ga+Maamli&family=Pirata+One&family=Playwrite+CL:wght@100..400&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
+
+{% else %}
+<div class="container mt-5">
+  <div class="card">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'assets/img/javlonbek.jpg' %}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h1 class="playwrite-de-grund-uniquifier">Start With Bismillah</h1>
+          <h4 class="cormorant-garamond-light">Bu blogda siz men haqimda ma'lumot olishingiz mumkin, bundan tashqari qiziqarli postlar ham joylab boraman kirib o`z fikringizni qoldirishingiz mumkin. Iltimos bir-birimizga nisbatan hurmatni saqlaylik!</h4>
+          <p class="barlow-condensed-thin">Postlarni ko`rmoqchi bo`lsangiz ro'yxatdan o`ting!</p>
+          <a href="{% url 'login' %}" class="btn btn-primary">Kirish</a>
+          <a href="{% url 'signup' %}" class="btn btn-success">Ro'yxatdan o'tish</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+   .card {
+    background: url("{% static 'assets/img/backround.png' %}") no-repeat center center fixed; /* Oq va havorang rasmni yuklash */
+    background-size: cover;
+    color: #000000; /* Yozuv rangi (oq fon uchun qora rang tanlandi) */
+  }
+
+  .custom-card {
+    background-color: rgba(255, 255, 255, 0.8); /* Karta fonining shaffofligi (oq rangga mos) */
+    color: #000000; /* Karta yozuv rangi (oq fon uchun qora rang tanlandi) */
+  }
+
+  .custom-card .card-title {
+    color: #1e90ff; /* Karta sarlavhasi rangi (havorangga mos) */
+  }
+
+  .custom-card .card-subtitle {
+    color: #4682b4; /* Karta qo'shimcha sarlavhasi rangi (havorangning ochiq rangi) */
+  }
+
+  .custom-card .card-footer a {
+    color: #1e90ff; /* Havolalar rangi (havorang) */
+  }
+
+  .custom-card .card-footer a:hover {
+    color: #4682b4; /* Havola ustida bo'lgan rangi (havorangning ochiq rangi) */
+  }
+
+  .custom-card .card-header,
+  .custom-card .card-body {
+    background-color: rgba(255, 255, 255, 0.5); /* Izoh kartasining fonining shaffofligi (oq rangga mos) */
+  }
+
+  .custom-card .blockquote-footer {
+    color: #000000; /* Izoh muallifi rangi (oq fon uchun qora rang tanlandi) */
+  }
+
+
+  .cormorant-garamond-light {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .barlow-condensed-thin {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .playwrite-de-grund-uniquifier {
+    font-family: "Playwrite DE Grund", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Ga+Maamli&family=Pirata+One&family=Playwrite+CL:wght@100..400&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
+
+{% endif %}
+{% endblock content %}

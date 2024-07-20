@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+{% block content %}
+
+  <div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="container-fluid" style="width: 40rem; height: 35rem; ">
+<h1>Yangi post</h1>
+<form method="post" enctype="multipart/form-data" class="px-4 py-3">{% csrf_token %}
+{{ form.media }}
+{{ form|crispy }}
+    <button type="submit" class="btn btn-success">Saqlash</button>
+  </form>
+</div>
+  </div>
+
+  {% endblock content %}

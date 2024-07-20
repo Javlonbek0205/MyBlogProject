@@ -1,0 +1,24 @@
+<!-- articles/templates/articles/comment_form.html -->
+
+{% extends "base.html" %}
+{% block title %}Sharh qo'shish{% endblock title %}
+{% load crispy_forms_tags %}
+
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+{% block content %}
+<div class="container" >
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2>Sharh qo'shish</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Yuborish</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

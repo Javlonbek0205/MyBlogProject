@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+{% block title %}Postlar{% endblock title %}
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center align-items-center vh-100">
+    {% for article in object_list %}
+    <div class="col-10 col-md-8 col-lg-6 mb-4 offset-md-2 offset-lg-2">
+      <div class="card mt-3">
+        <div class="card-header">
+          <span class="font-weight-bold">
+            <a href="{% url 'article_detail' article.pk %}">
+              <h2>{{ article.title }}</h2>
+            </a>
+          </span>
+        </div>
+        {% if article.photo %}
+        <img class="card-img-top" src="{{ article.photo.url }}" alt="{{ article.title }}" >
+        {% endif %}
+        <div class="card-body">
+          <p class="card-text">{{ article.summary }}... <a href="{% url 'article_detail' article.pk %}">batafsil</a></p>
+        </div>
+        <div class="card-footer">
+          Muallif: {{ article.author|title }} | {{ article.date }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .card {
+    background: url("{% static 'assets/img/content1.png' %}") no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    min-height: 300px;
+  }
+
+  .card .card-header,
+  .card .card-body,
+  .card .card-footer {
+    padding: 20px;
+  }
+
+  .card .card-title {
+    color: #fedb72;
+  }
+
+  .card .card-subtitle {
+    color: #fc9b0a;
+  }
+
+  .card .card-footer a {
+    color: #fedb72;
+  }
+
+  .card .card-footer a:hover {
+    color: #fc9b0a;
+  }
+
+  .card .blockquote-footer {
+    color: #ffffff;
+  }
+
+  @media (max-width: 767px) {
+    .card {
+      width: 100%;
+    }
+
+    .card .card-header,
+    .card .card-body,
+    .card .card-footer {
+      padding: 10px;
+    }
+
+    .card .card-title {
+      font-size: 1.2rem;
+    }
+
+    .card .card-subtitle {
+      font-size: 0.9rem;
+    }
+
+    .card .card-text {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+{% endblock content %}

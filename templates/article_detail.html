@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Postlar{% endblock title %}
+{% load static %}
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card-mt-5" style="width: 40rem; height: 35rem">
+    <div class="card card-body">
+      {% if object.photo %}
+    <img src="{{ object.photo.url }}" class="card-img-top" alt="{{ object.title }}">
+    {% endif %}
+      <h1 class="card-title">{{ object.title  }}</h1>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Muallif: {{ object.author }} | {{ object.date }}</h6>
+      <p class="card-text">{{ object.body|safe }}</p>
+      <div class="card-footer">
+        <a href="{% url 'article_edit' article.pk %}">| Tahrirlash</a>
+        <a href="{% url 'article_delete' article.pk %}">| O`chirish</a>
+        <a href="{% url 'article_list' %}">| Barcha postlar |</a>
+        <a href="{% url 'comment_form' article.pk %}">| Izoh yozish |</a>
+
+      </div>
+    </div>
+      <div class="card card-body mt-3">
+      <div class="card-title">Izohlar</div>
+            <ul class="list-unstyled">
+              {% for comment in article.comments.all %}
+              <li><blockquote class="blockquote">
+                <p>{{ comment }}</p>
+                <footer class="blockquote-footer">{{ comment.author }}</footer>
+            </blockquote>
+                </li>
+                {% endfor %}
+          </ul>
+          </div>
+          </div>
+        </div>
+</div>
+</div>
+<br>
+<style>
+  .card-title{
+    background-size: cover;
+    color: #fdb628;
+  }
+  .card {
+    background: url("{% static 'assets/img/content1.png' %}") no-repeat center center fixed;
+    background-size: cover;
+    color: #fdfcfa; /* Yozuv rangi */
+  }
+
+</style>
+{% endblock content %}

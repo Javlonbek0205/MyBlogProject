@@ -1,0 +1,37 @@
+"""
+URL configuration for config project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include # <include> bu boshqa yaratilgan applarning <url>larini chaqirish uchun ishlatiladi
+from django.conf import settings # settings.py dagi debug funksiya uchun chaqirildi
+from django.conf.urls.static import static # static url lar bilan ishlash uchun chaqirildi
+#qo`shimchalar
+
+urlpatterns = [
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('admin/', admin.site.urls),
+    #qo'shimchalar
+    path('accounts/', include('accounts.urls')),# (accounts)dagi url ni chaqirib oldi. Buyerda qachon foydalanuvchi <accounts/>ga kelsa accountsda yaratilgan urllarga o`tib ketadi
+    path('accounts/', include('django.contrib.auth.urls')), # bu yerda foydalanuvchi <ro'yxatdan o`tsa yoki chiqib ketsa> <django.contrib.auth.urls> djangoning tayyor urllariga o`tib ketadi va ular o`zi bizni kerakli joyga olib chiqadi(yani 'home'ga)
+    path('articles/', include('articles.urls')),  # (articles) da yaratilgan url lar kelishi uchun qo`shildi
+    path('', include('pages.urls')), # bu yerda (pages)url lar chaqirildi
+
+
+
+]
+
+if settings.DEBUG:
+  urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
